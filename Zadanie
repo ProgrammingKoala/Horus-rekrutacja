@@ -16,21 +16,32 @@ interface Structure {
 public class Wall implements Structure {
     private List blocks;
     
-    Optional findBlockByColor(String color){
-        
+    public Optional<String> findBlockByColor(String color) {
+        Optional<String> blockColor;
+
+        for (String n : blocks) {
+            if (n.equals(color)) {
+                blockColor = Optional.ofNullable(n);
+                return blockColor;
+            }
+        }
+        return Optional.empty();
     }
     
-    List findBlocksByMaterial(String material){
-        ArrayList<String> materials =  new ArrayLsit<String>();
+    public List findBlocksByMaterial(String material){
+        List<String> materials =  new ArrayLsit<String>();
         
+        for (String n : blocks){ 
+            if (n.equals(material)){
+                materials.add(n);
+            }
+        }
         
         return materials;
     }
     
-    int count(){
-        int blockCount;
-        
-        
+    public int count(){
+        int blockCount = blocks.size();
         return blockCount;
     }
 }
